@@ -65,6 +65,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pain_spot-of-game-development" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/pain_spot-of-game-development/" class="article-date">
+  <time datetime="2016-01-27T02:22:38.000Z" itemprop="datePublished">2016-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/pain_spot-of-game-development/">游戏开发的痛点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="u4E00_u3001_u524D_u8A00"><a href="#u4E00_u3001_u524D_u8A00" class="headerlink" title="一、前言"></a>一、前言</h1><p>游戏开发是一个涉及多层面多专业的复杂工程。但是其中有些地方，相对来说更难克服，所以我称其为痛点。作为一个开发工程师，从技术开发人员角度，本文试图剖析这些痛点并尝试提出解决方案，抛砖引玉吧。</p>
+<h1 id="u4E8C_u3001_u8BE6_u89E3"><a href="#u4E8C_u3001_u8BE6_u89E3" class="headerlink" title="二、详解"></a>二、详解</h1><p>可以从经济角度来考察实际开发中有哪些痛点。消耗最多时间、精力、资源，或者可能引起重大损失的，等等。</p>
+<ol>
+<li><p>性能问题。</p>
+</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.lushisang.com/pain_spot-of-game-development/" data-id="cikortay80000t3nx8b0rvnm8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dispose_first_program_design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/dispose_first_program_design/" class="article-date">
@@ -87,13 +130,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="u4E00_u3001_u524D_u56E0"><a href="#u4E00_u3001_u524D_u56E0" class="headerlink" title="一、前因"></a>一、前因</h2><p>每个程序除了实现功能外，在非功能方面，都有自己的侧重点。</p>
+        <h1 id="u4E00_u3001_u524D_u8A00"><a href="#u4E00_u3001_u524D_u8A00" class="headerlink" title="一、前言"></a>一、前言</h1><p>每个程序除了实现功能外，在非功能方面，都有自己的侧重点。</p>
 <p>比如火星探测器、医疗仪器控制程序等，对“安全”的要求肯定是非常高的。又比如导弹控制程序，对“实时性”要求很高。</p>
 <p>而游戏开发，对“性能”要求很高，可以说是压榨每一份计算资源来实现最好的效果。现在做的手机页游，可以利用的资源虽然比远古时代的游戏多多了，但相对当前的端游和电脑页游，还是少很多，因此“优化”是非常重要的。</p>
 <p><a href="http://blog.lushisang.com/mobile_web_game_performance_optimization/">《手机页游的性能优化》</a>里写了几点优化方法，其中说到一个机制，就是本文讲的“清理优先”的机制。</p>
 <p>“清理优先”机制，是通过自动化的合理及时的清理来节约使用设备资源，并减轻程序员个体清理垃圾造成的安全问题和开发负担。</p>
 <p>因为现在的程序员们，不像远古时代的C语言程序员，很多没有性能优化和垃圾回收的意识，只专注于功能的实现。开发端游或电脑页游可能还可以勉强可用，但是手机页游资源实在太紧缺了。而程序语言如JavaScript的垃圾回收机制，不管是引用计数还是标记清除，都只是工具，就像机床，提供了部分自动化功能，但还是需要程序员去操作，也就是该清理的还是得程序员告诉它。所以就有了这个“清理优先”的程序设计，在语言垃圾回收机制的基础上，实现自动化或半自动化的垃圾标记和清理。避免垃圾未清理造成的游戏卡死、崩溃、bug等。</p>
-<h2 id="u4E8C_u3001_u8BE6_u89E3"><a href="#u4E8C_u3001_u8BE6_u89E3" class="headerlink" title="二、详解"></a>二、详解</h2><p>这个设计，关键点如下：</p>
+<h1 id="u4E8C_u3001_u8BE6_u89E3"><a href="#u4E8C_u3001_u8BE6_u89E3" class="headerlink" title="二、详解"></a>二、详解</h1><p>这个设计，关键点如下：</p>
 <ol>
 <li><p>要使用先登记。通过清理器（Disposer）来实现。简单地说，就是如果要使用一切需要清理的功能或资源，都通过清理器去获得，清理器内部会做记录，在需要清理时，直接调用清理器的清理方法即可。</p>
 </li>
@@ -110,19 +153,19 @@
 <li>定时任务。因为定时任务有对回调函数的全局引用。</li>
 <li>等等。具体看代码。</li>
 </ol>
-<h2 id="u4E09_u3001_u7ED3_u679C"><a href="#u4E09_u3001_u7ED3_u679C" class="headerlink" title="三、结果"></a>三、结果</h2><p>使用“清理优先”机制前，很多资源需要手动关注并销毁，但是因为进度急事情多，大部分都没销毁。在建立“清理优先”机制并重构代码后，明显性能改善很多（策划也同意😄），而且也没有手动销毁的心理负担了，可以安心专注地开发功能了。</p>
+<h1 id="u4E09_u3001_u7ED3_u679C"><a href="#u4E09_u3001_u7ED3_u679C" class="headerlink" title="三、结果"></a>三、结果</h1><p>使用“清理优先”机制前，很多资源需要手动关注并销毁，但是因为进度急事情多，大部分都没销毁。在建立“清理优先”机制并重构代码后，明显性能改善很多（策划也同意😄），而且也没有手动销毁的心理负担了，可以安心专注地开发功能了。</p>
 <p>同时，趁这个机会完善了日志系统，也改善了调试问题的难度。</p>
-<h2 id="u56DB_u3001_u6539_u8FDB"><a href="#u56DB_u3001_u6539_u8FDB" class="headerlink" title="四、改进"></a>四、改进</h2><p>这种底层机制，做不好的话，很容易出大问题，所以需要时间不断完善，解决问题。现在基本稳定了。但是还是有很多需要改进的地方。</p>
+<h1 id="u56DB_u3001_u6539_u8FDB"><a href="#u56DB_u3001_u6539_u8FDB" class="headerlink" title="四、改进"></a>四、改进</h1><p>这种底层机制，做不好的话，很容易出大问题，所以需要时间不断完善，解决问题。现在基本稳定了。但是还是有很多需要改进的地方。</p>
 <ol>
 <li>过于集中，所有的资源获取和销毁都是通过Disposer一个类来弄，不便于扩展维护。所以以后可以把功能分散到不同的类，然后集中于Disposer。</li>
 <li>初用者理解这个机制有点难度，需要完善注释和文档。</li>
 </ol>
-<h2 id="u4E94_u3001_u9644_u4EF6"><a href="#u4E94_u3001_u9644_u4EF6" class="headerlink" title="五、附件"></a>五、附件</h2><p>参考代码：Disposer、BaseModel、BaseView、BaseViewHelper、PageManager等。暂不提供。</p>
+<h1 id="u4E94_u3001_u9644_u4EF6"><a href="#u4E94_u3001_u9644_u4EF6" class="headerlink" title="五、附件"></a>五、附件</h1><p>参考代码：Disposer、BaseModel、BaseView、BaseViewHelper、PageManager等。暂不提供。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.lushisang.com/dispose_first_program_design/" data-id="cijku8u5i0001panx63o59h36" class="article-share-link">Share</a>
+      <a data-url="http://blog.lushisang.com/dispose_first_program_design/" data-id="cikortayx0002t3nxbgr8sprd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.lushisang.com/mobile_web_game_performance_optimization/" data-id="cijku8u4u0000panxt228zzkr" class="article-share-link">Share</a>
+      <a data-url="http://blog.lushisang.com/mobile_web_game_performance_optimization/" data-id="cikortayt0001t3nx4ie5o1is" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -224,6 +267,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/pain_spot-of-game-development/">游戏开发的痛点</a>
+          </li>
         
           <li>
             <a href="/dispose_first_program_design/">清理优先的程序设计</a>
